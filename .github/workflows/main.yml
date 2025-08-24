@@ -1,8 +1,5 @@
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - main
 
 name: Create release
 jobs:
@@ -13,13 +10,14 @@ jobs:
       volumes:
         - /opt:/opt:rw,rshared
         - /opt:/__e/node24:ro,rshared
+        - /opt:/__e/node20:ro,rshared
     runs-on: ubuntu-24.04-arm
     
 
     strategy:
       fail-fast: false
       matrix:
-        architecture: [ x64 ]
+        architecture: [ arm64 ]
 
     steps:
     - name: Allow Linux musl containers on ARM64 runners
